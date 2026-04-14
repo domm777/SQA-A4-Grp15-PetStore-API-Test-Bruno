@@ -1,0 +1,36 @@
+info:
+  name: Register A Pet (POST)
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: https://petstore.swagger.io/v2/pet
+  body:
+    type: json
+    data: |-
+      {
+        "id": 98755, 
+        "name": "BrunoTestPet", 
+        "status": "available"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        test("Status is 200", function() {
+          expect(res.getStatus()).to.equal(200);
+        });
+
+        test("Bruno's Pet name is correct", function() {
+          const data = res.getBody();
+          expect(data.name).to.equal("BrunoTestPet");
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

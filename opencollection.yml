@@ -1,7 +1,7 @@
 opencollection: 1.0.0
 
 info:
-  name: SQA A4 Grp15 PetStore API Test Bruno
+  name: A4_Pair15
 config:
   proxy:
     inherit: true

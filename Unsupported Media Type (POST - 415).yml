@@ -1,0 +1,42 @@
+info:
+  name: Unsupported Media Type (POST - 415)
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: https://petstore.swagger.io/v2/pet
+  headers:
+    - name: Content-Type
+      value: text/plain
+  body:
+    type: json
+    data: |-
+      {
+        "id": 98756, 
+        "name": "BrunoTestPet2", 
+        "status": "available"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        test("Status is 415", function() {
+          expect(res.getStatus()).to.equal(415);
+        });
+
+        // since the 415 response doesn't return a message field
+        // it returns undefined the whole point is to check if the 
+        // API rejects plain text with 415 status code.
+        // test("Response contains error message", function() {
+        //   const data = res.getBody();
+        //   expect(data.type).to.equal("undefined");
+        // });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
