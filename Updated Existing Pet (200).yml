@@ -1,18 +1,18 @@
 info:
-  name: Register A Pet (POST)
+  name: Updated Existing Pet (200)
   type: http
-  seq: 2
+  seq: 8
 
 http:
-  method: POST
+  method: PUT
   url: https://petstore.swagger.io/v2/pet
   body:
     type: json
     data: |-
       {
         "id": 98755, 
-        "name": "BrunoTestPet", 
-        "status": "available"
+        "name": "UpdatedBrunoPet", 
+        "status": "sold"
       }
   auth: inherit
 
@@ -24,9 +24,9 @@ runtime:
           expect(res.getStatus()).to.equal(200);
         });
 
-        test("Bruno's Pet name is correct", function() {
+        test("Our Pet's name was updated / changed", function() {
           const data = res.getBody();
-          expect(data.name).to.equal("BrunoTestPet");
+          expect(data.name).to.equal("UpdatedBrunoPet");
         });
 
 settings:

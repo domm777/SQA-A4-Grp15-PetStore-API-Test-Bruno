@@ -1,11 +1,11 @@
 info:
-  name: "\tGet swagger documentation"
+  name: Deleted Pet ID (200)
   type: http
-  seq: 12
+  seq: 14
 
 http:
   method: GET
-  url: https://petstore.swagger.io/v2/swagger.json
+  url: https://petstore.swagger.io/v2/pet/98755
   auth: inherit
 
 settings:

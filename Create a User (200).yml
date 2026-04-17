@@ -1,0 +1,38 @@
+info:
+  name: Create a User (200)
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: https://petstore.swagger.io/v2/user
+  body:
+    type: json
+    data: |-
+      {
+        "id": 1, 
+        "username": "BrunoTesterUser", 
+        "firstName": "Bruno", 
+        "lastName": "Tester"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        test("Status is 200", function() {
+          expect(res.getStatus()).to.equal(200);
+        });
+
+        test("Response message is OK", function() {
+          const data = res.getBody();
+          // API returns ID (of user) as the string
+          expect(data.message).to.equal("1"); 
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
