@@ -26,7 +26,7 @@ namespace DonationTests {
 
         [Test]
         public void Test_Donation_20_Returns_0Percent() {
-            FillForm("John", "Doe", "john3@test.com", "20");
+            FillForm("John", "Doe", "john1@test.com", "20");
 
             // The HTML tag is found in <p id="deduction">
             var resultElement = driver.FindElement(By.Id("deduction"));
@@ -46,7 +46,7 @@ namespace DonationTests {
         // Mid range value to test
         [Test]
         public void Test_Donation_500_Returns_5Percent() {
-            FillForm("Bob", "Doe", "bob1@test.com", "500");
+            FillForm("Bob", "Doe", "Bob3@test.com", "500");
 
             var resultElement = driver.FindElement(By.Id("deduction"));
             Assert.That(resultElement.Text, Is.EqualTo("Your donation will get a 5% tax deduction."));
@@ -55,7 +55,7 @@ namespace DonationTests {
         // High range value to test
         [Test]
         public void Test_Donation_1000_Returns_5Percent() {
-            FillForm("Bob", "Doe", "bob1@test.com", "1000");
+            FillForm("Jake", "Doe", "Jake4@test.com", "1000");
 
             var resultElement = driver.FindElement(By.Id("deduction"));
             Assert.That(resultElement.Text, Is.EqualTo("Your donation will get a 5% tax deduction."));
@@ -63,7 +63,7 @@ namespace DonationTests {
         // 15% deduction test
         [Test]
         public void Test_Donation_1001_Returns_15Percent() {
-            FillForm("Bob", "Doe", "bob1@test.com", "1001");
+            FillForm("Banner", "Doe", "Banner5@test.com", "1001");
 
             var resultElement = driver.FindElement(By.Id("deduction"));
             Assert.That(resultElement.Text, Is.EqualTo("Your donation will get a 15% tax deduction."));
