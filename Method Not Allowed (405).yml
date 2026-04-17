@@ -1,0 +1,30 @@
+info:
+  name: Method Not Allowed (405)
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: https://petstore.swagger.io/v2/store/inventory
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        test("Status is 405", function() {
+          expect(res.getStatus()).to.equal(405);
+        });
+
+        // this test also fails 
+        // test("Returns error type", function() {
+        //   // Testing to see if Petstore API handels returns with empty
+        //   // body or specific error for 405 status code
+        //   expect(res.getBody()).to.be.defined;
+        // });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

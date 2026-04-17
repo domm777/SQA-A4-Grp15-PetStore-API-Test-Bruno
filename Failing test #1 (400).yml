@@ -1,7 +1,7 @@
 info:
-  name: Faling test (400)
+  name: "Failing test #1 (400)"
   type: http
-  seq: 6
+  seq: 8
 
 http:
   method: GET
@@ -12,7 +12,7 @@ runtime:
   scripts:
     - type: after-response
       code: |-
-        test("This is a Failing test - Expecting 200 but a non existing pet", function() {
+        test("This is an example of a failing test we'd expect 200 but it's non existing pet", function() {
           // fails because api returns 404 (not found)
           expect(res.getStatus()).to.equal(200);
         });
