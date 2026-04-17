@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charitable Donation Tax Deduction Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Charitable Donation Tax Deduction Calculator</h1>
+        <form id="donationForm">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="donationAmount">Donation Amount</label>
+                <input type="number" class="form-control" id="donationAmount" min="0" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div id="result">
+            <p id="congratulations"></p>
+            <p id="deduction"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('donationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var firstName = document.getElementById('firstName').value;
+            var lastName = document.getElementById('lastName').value;
+            var donationAmount = document.getElementById('donationAmount').value;
+            var deductionPercentage;
+            if (donationAmount <= 20) {
+                deductionPercentage = 0;
+            } else if (donationAmount <= 1000) {
+                deductionPercentage = 5;
+            } else {
+                deductionPercentage = 15;
+            }
+            var congratulations = document.getElementById('congratulations');
+            var deduction = document.getElementById('deduction');
+            congratulations.textContent = 'Congratulations ' + firstName + ' ' + lastName + '!';
+            deduction.textContent = 'Your donation will get a ' + deductionPercentage + '% tax deduction.';
+        });
+    </script>
+</body>
+</html>
